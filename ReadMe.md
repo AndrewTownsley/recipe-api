@@ -1,6 +1,6 @@
 *** Walnut Backend API ***
 
-1. Build a GET route that returns all Recipe names.
+<!-- 1. Build a GET route that returns all Recipe names. -->
 
 2. Build a GET route that takes a recipe name as a string param.  Return all the ingredients and the number of steps as JSON.
 
