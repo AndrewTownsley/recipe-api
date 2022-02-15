@@ -13,19 +13,18 @@ const router = express.Router();
 // Declare GET route to get all recipes
 router.get('/', (req, res) => {
     // return all recipe names
-    res.send(JSON.stringify(recipes.recipes.map(recipe => recipe.name)));
+    res.send(recipes);
 })
 
 // GET route to get a recipe by name
 router.get('/:name', (req, res) => {
     console.log(recipes);
     const { name } = req.params
-    // const findRecipe = recipes.find((recipe) => recipe.name === name)
-    // if (recipe) {
-        res.send(recipes.instructions)
-    // } else {
-    //     res.status(404).send({ error: 'Recipe not found' })
-    // }
+    res.send(JSON.stringify(recipes.recipes.find(recipe => recipe.name === name)));
+    if (recipe) {
+        } else {
+        res.status(404).send({ error: 'Recipe not found' })
+    }
 })
 
 
