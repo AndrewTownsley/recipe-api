@@ -31,8 +31,14 @@ router.get('/:name', (req, res) => {
 // POST route to create new recipe
 router.post('/', (req, res) => {
     const recipe = req.body;
-    recipes.push({...recipe})
-    res.send(`Recipe with name: ${recipe.name} has ben created.`)
+    const { name } = req.params
+    // add new recipe to recipes array unless it already exists
+    if (recipes.recipes.find(recipe => recipe.name === name)) {
+        res.status(400).send({ error: 'Recipe already exists' })
+    } else {
+        recipes.recipes.push(recipe);
+        res.send(recipe);
+    }
 })
 
 // PATCH route to update recipe
