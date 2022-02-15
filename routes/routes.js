@@ -41,19 +41,30 @@ router.post('/', (req, res) => {
     }
 })
 
-// PATCH route to update recipe
-router.patch('/:id', (req, res) => {
-    console.log("update route...");
-    const { id } = req.params;
-    const { name, ingredients, instructions } = req.body;
-    const recipe = recipes.find((recipe) => recipe.name === name);
-
-    if(name) recipe.name = name;
-    if(ingredients) recipe.ingredients = ingredients;
-    if(instructions) recipe.instructions = instructions;
-
-    res.send(`Recipe with name: ${name} has been updated`);
+// create PUT route to update a recipe, if recipe does not exist, return 'recipe does not exist'
+router.put('/:name', (req, res) => {
+    const { name } = req.params
+    const recipe = req.body;
+    const index = recipes.recipes.findIndex(recipe => recipe.name === name);
+    if (index === -1) {
+        res.status(404).send({ error: 'Recipe not found' })
+    } else {
+        recipes.recipes[index] = recipe;
+        res.send(recipe);
+    }
 })
 
 
+
 export default router;
+
+// console.log("update route...");
+// const { index } = req.params;
+// const { name, ingredients, instructions } = req.body;
+// const recipe = recipes.find((recipe) => recipe.index === index);
+
+// if(name) recipe.name = name;
+// if(ingredients) recipe.ingredients = ingredients;
+// if(instructions) recipe.instructions = instructions;
+
+// res.send(`Recipe with name: ${name} has been updated`);

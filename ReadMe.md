@@ -11,7 +11,7 @@
     } 
     status: 400
 
-4. Adda put route that can update existing recipes.
+4. Add a put route that can update existing recipes.
     # If recipe does not exist, return 
     {
         error: "Recipe does not exist"
